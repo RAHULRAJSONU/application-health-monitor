@@ -12,8 +12,9 @@ const fetchHealthStart = (state, action)=>{
 
 const fetchHealthSuccess = (state, action) => {
     console.log('Reducer__',action);
+    const updatedList = state.responseList.concat(action.responseList)
     return updateObject(state,{
-        responseList: action.responseList,
+        responseList: updatedList,
         loading: false
     });
 }

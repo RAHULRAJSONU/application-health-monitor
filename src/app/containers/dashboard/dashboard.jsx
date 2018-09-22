@@ -63,7 +63,15 @@ const urlLists = [
   {app:"Application1",url:'/health/up'},
   {app:"Application2",url:'/health/up'},
   {app:"Application3",url:'/health/down'},
-  {app:"Application4",url:'/health/up'}];
+  {app:"Application4",url:'/health/up'},
+  {app:"Application5",url:'/health/down'},
+  {app:"Application6",url:'/health/up'},
+  {app:"Application7",url:'/health/down'},
+  {app:"Application8",url:'/health/up'},
+  {app:"Application9",url:'/health/up'},
+  {app:"Application10",url:'/health/up'},
+  {app:"Application11",url:'/health/down'},
+  {app:"Application12",url:'/health/up'}];
 
 class Dashboard extends Component {
 
@@ -81,7 +89,7 @@ class Dashboard extends Component {
                 <Toolbar>
                   <CameraIcon className={classes.icon} />
                   <Typography variant="title" color="inherit" noWrap>
-                    Album layout
+                    Application Health Monitor
                   </Typography>
                 </Toolbar>
               </AppBar>
