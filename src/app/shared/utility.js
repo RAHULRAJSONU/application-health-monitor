@@ -5,6 +5,15 @@ export const updateObject = (oldObject, updatedProperties) => {
     };
 };
 
+export const findIndex = (arr, field, key) => {
+    for(let k in arr){
+        if(arr[k][field] === key ){
+            return k;
+        }        
+    }
+    return -1;
+}
+
 export const checkValidity = ( value, rules ) => {
     let isValid = true;
     if ( !rules ) {

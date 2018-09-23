@@ -71,17 +71,33 @@ const urlLists = [
   {app:"Application9",url:'/health/up'},
   {app:"Application10",url:'/health/up'},
   {app:"Application11",url:'/health/down'},
-  {app:"Application12",url:'/health/up'}];
+  {app:"Application12",url:'/health/up'}
+];
 
 class Dashboard extends Component {
 
+  constructor(){
+    super();
+  }
+
     componentDidMount(){
-      console.log(urlLists);
+      //setInterval(()=>this.props.onFetchResponseList(urlLists),5000);
       this.props.onFetchResponseList(urlLists);
+      this.callApi();
     }
 
+    shouldComponentUpdate(nextProps){
+      return this.props.shouldUpdate;
+    }
+
+    callApi(){setInterval(()=>this.props.onFetchResponseList(urlLists),5000)}
+
     render(){
-        const { classes } = this.props;
+        const { classes, responseList } = this.props;
+        let cardComp = <h1>Loading...</h1>;
+        if(!this.props.loading) {
+          cardComp = <DataGrid data={this.props.responseList}/>;
+        }
         return (
             <React.Fragment>
               <CssBaseline />
@@ -97,7 +113,7 @@ class Dashboard extends Component {
                 {/* Hero unit */}
                 <div className={classNames(classes.layout, classes.cardGrid)}>
                   {/* End hero unit */}
-                  <DataGrid data={this.props.responseList}/>
+                  {cardComp}
                 </div>
               </main>
               {/* Footer */}
@@ -121,7 +137,9 @@ Dashboard.propTypes = {
 
 const mapStateToProps = state => {
   return {
-    responseList: state.healthFetch.responseList
+    responseList: state.healthFetch.responseList,
+    loading: state.healthFetch.loading,
+    shouldUpdate: state.healthFetch.shouldUpdate
   };
 };
 
